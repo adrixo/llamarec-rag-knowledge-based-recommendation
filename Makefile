@@ -1,7 +1,10 @@
 
 setup:
 	poetry install
-	poetry run
+	poetry shell
+	cd dataset
+	bash download.sh
+	cd ..
 
 run:
 	poetry run start
