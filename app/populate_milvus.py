@@ -38,20 +38,16 @@ print(f"Collection '{collection_name}' is created: {utility.has_collection(colle
 dataset_path = "/Users/adrianvalera/git/personal/llamarec-rag/dataset/ml-25m-reduced/"
 movies = pd.read_csv(dataset_path+'movies_enrich.csv')
 
-# para cada elemento
-for index, row in movies.iterrows():
-    # Hacemos un embedding
-    pass
-    # Lo guardamos en Milvus
-
-
 batch_size = 1
 page_batch_size = 10
 
 
+i = 0
 for index, row in tqdm(movies.iterrows(), total=movies.shape[0]):
+    i+=1
     name = row['title']
     tags = row['tags']
     embed = model.encode(tags)
-
     milvus_db.insert([[name], [tags],  [embed]])
+
+milvus_db.flush()
