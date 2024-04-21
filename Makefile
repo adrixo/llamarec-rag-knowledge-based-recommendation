@@ -1,5 +1,5 @@
 
-setup:
+install:
 	poetry install
 	poetry shell
 	cd dataset
