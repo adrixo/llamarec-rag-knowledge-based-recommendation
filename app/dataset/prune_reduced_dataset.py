@@ -40,5 +40,12 @@ def prune_tags():
 
     new_tags.to_csv(dataset_path+'tags.csv', index=True)
 
+def prune_genome_scores():
+    genomes = pd.read_csv(full_dataset_path+'genome-scores.csv')
+
+    filtered = genomes[genomes['relevance'] > 0.8]
+
+    filtered.to_csv(dataset_path+'genome-scores.csv', index=True)
+
 prune_movies()
 prune_links()
