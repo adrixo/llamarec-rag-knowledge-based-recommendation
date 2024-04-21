@@ -45,7 +45,7 @@ def prune_genome_scores():
 
     filtered = genomes[genomes['relevance'] > 0.8]
 
-    filtered.to_csv(dataset_path+'genome-scores.csv', index=True)
+    filtered.to_csv(dataset_path+'genome-scores.csv', index=False)
 
 prune_movies()
 prune_links()
