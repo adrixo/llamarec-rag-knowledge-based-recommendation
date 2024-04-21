@@ -1,3 +1,6 @@
+dataset/ml-25m/
+dataset/ml-25m.zip
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
