@@ -1,6 +1,8 @@
 import pandas as pd
 
-dataset_path = "dataset/ml-25m-reduced/"
+dataset_path = "/Users/adrianvalera/git/personal/llamarec-rag/dataset/ml-25m-reduced/"
+full_dataset_path = "/Users/adrianvalera/git/personal/llamarec-rag/dataset/ml-25m/"
+
 
 def prune_movies():
     # maintain only movies rated by users 1,2,6
@@ -23,7 +25,20 @@ def prune_links():
     # iterate all rows in ratings
     new_links = links[links.index.isin(movies['movieId'])].copy()
 
-    new_links.to_csv(dataset_path+'links.csv', index=False)
+    new_links.to_csv(dataset_path+'links.csv', index=True)
+
+
+def prune_tags():
+    users = pd.read_csv(dataset_path+'ratings.csv')
+
+    tags = pd.read_csv(full_dataset_path+'tags.csv')
+    print(tags.columns)
+
+    # iterate all rows in ratings
+    #new_tags = tags[tags.index.isin(users['movieId'])].copy()
+    new_tags = tags[tags.index.isin(users['userId'])].copy()
+
+    new_tags.to_csv(dataset_path+'tags.csv', index=True)
 
 prune_movies()
 prune_links()
